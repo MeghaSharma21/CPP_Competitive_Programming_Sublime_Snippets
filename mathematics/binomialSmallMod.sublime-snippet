@@ -1,0 +1,43 @@
+<snippet>
+	<content><![CDATA[
+	ll dp(int n, int r, ll p)
+	{
+		ll memo[r+1];
+		mem(memo,0);
+		
+		memo[0] = 1;
+		
+		for (int i = 1; i <= n; i++)
+		{
+			for (int j = min(i,r); j > 0; j--)
+			{
+				memo[j] = (memo[j] + memo[j-1]) % p ;
+			}
+		}
+		return memo[r];
+	}
+
+	ll C(ll n, ll r, ll p)			 // p is small prime
+	{
+		if (r==0)
+		{
+			return 1;
+		}
+		if (r>n)		//degenerate case
+		{
+			return 0;
+		}
+		
+		int nd = n%p;
+		int rd = r%p;
+		
+		return ( C(n/p, r/p, p)*dp(nd, rd, p) )%p;
+		
+	}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>binomial-small-mod</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

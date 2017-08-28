@@ -1,0 +1,23 @@
+<snippet>
+	<content><![CDATA[
+	ll gcd( ll a, ll b )
+	{
+		if(b==0)
+		{
+		     return a;
+		}
+		else
+		{
+		     return gcd( b, a%b );
+		}
+	}
+	ll lcm (ll a, ll b)
+	{
+		return (a*b)/gcd(a,b);
+	}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>gcd</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.cpp</scope> -->
+</snippet>
