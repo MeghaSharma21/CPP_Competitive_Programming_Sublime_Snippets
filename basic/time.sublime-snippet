@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[
+	std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
+	start = std::chrono::high_resolution_clock::now();
+	/*
+	Code goes here
+	*/
+	end = std::chrono::high_resolution_clock::now();
+	ll elapsed_time = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+	cout << "\nElapsed Time: " << elapsed_time << "ms\n";
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>time</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
