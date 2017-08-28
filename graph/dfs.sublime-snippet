@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+	void dfs(int x)
+	{
+		visited[x]=true;
+
+		for(auto& i : G[x])
+		{
+			if(visited[i]==false)
+			{
+				dfs(i);
+			}
+		}
+	}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>dfs</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
