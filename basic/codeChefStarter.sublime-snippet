@@ -23,6 +23,7 @@
 	#define eb emplace_back
 	#define f first
 	#define s second
+	#define clr(x) memset(x, 0, sizeof(x))
 	
 	using namespace std;
 	int main()
