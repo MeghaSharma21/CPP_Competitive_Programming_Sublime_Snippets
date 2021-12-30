@@ -1,0 +1,67 @@
+<snippet>
+  <content><![CDATA[
+void TopodfsDAG(int node, vector<pair<int, int>> adj[], vector<bool> &vis, stack<int> &st)
+{
+    vis[node] = true;
+    for (auto x : adj[node])
+    {
+        if (!vis[x.first])
+        {
+            TopodfsDAG(x.first, adj, vis, st);
+        }
+    }
+    st.push(node);
+}
+void shortesPathDAG()
+{
+    int n, m;
+    cin >> n >> m;
+    vector<bool> vis(n + 1, false);
+    vector<pair<int, int>> adj[n];
+    for (int i = 0; i < m; i++)
+    {
+        int u, v, w;
+        cin >> u >> v >> w;
+        adj[u].pb({v, w});
+    }
+    int src;
+    cin >> src;
+    stack<int> st;
+    for (int i = 0; i < n; i++)
+    {
+        if (!vis[i])
+        {
+
+            TopodfsDAG(i, adj, vis, st);
+        }
+    }
+    int dist[n];
+    for (int i = 0; i < n; i++)
+    {
+        dist[i] = INT_MAX;
+    }
+    dist[src] = 0;
+    while (!st.empty())
+    {
+        int node = st.top();
+        st.pop();
+        if (dist[node] != INT_MAX)
+        {
+            for (auto x : adj[node])
+            {
+                if (dist[x.first] > dist[node] + x.second)
+                {
+                    dist[x.first] = dist[node] + x.second;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < n; i++)
+        (dist[i] == INT_MAX) ? cout << "INFINITY " : cout << dist[i] << " ";
+}
+]]></content>
+  <tabTrigger>shortesPathDAG</tabTrigger>
+  <description>Shortest Path Direct Acyclic Graph</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>
