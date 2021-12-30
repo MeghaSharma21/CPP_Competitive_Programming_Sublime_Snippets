@@ -1,0 +1,53 @@
+<snippet>
+  <content><![CDATA[
+void CycleBFS()
+{
+    int n, m;
+    cin >> n >> m;
+    vector<vector<int>> adj(n);
+    vector<int> indeg(n, 0);
+    for (int i = 0; i < m; i++)
+    {
+        int u, v;
+        cin >> u >> v;
+        adj[u].pb(v);
+        indeg[v]++;
+    }
+    queue<int> q;
+    for (int i = 0; i < indeg.size(); i++)
+    {
+        if (indeg[i] == 0)
+        {
+            q.push(i);
+        }
+    }
+    int count = 0;
+    while (!q.empty())
+    {
+        int node = q.front();
+
+        q.pop();
+        for (auto x : adj[node])
+        {
+            indeg[x]--;
+            if (indeg[x] == 0)
+            {
+                q.push(x);
+            }
+        }
+    }
+    if (count != n)
+    {
+        cout << true << endl;
+    }
+    else
+    {
+        cout << false << endl;
+    }
+}
+]]></content>
+  <tabTrigger>isCycleBfs</tabTrigger>
+  <description>Is Cycle is Present in Graph using BFS</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

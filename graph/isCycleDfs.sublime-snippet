@@ -1,0 +1,51 @@
+<snippet>
+  <content><![CDATA[
+bool isCycle(int s, vector<vector<int>> &adj, vector<bool> &vis, int parent)
+{
+    vis[s] = true;
+    for (auto x : adj[s])
+    {
+        if (x != parent)
+        {
+            if (vis[x])
+            {
+                return true;
+            }
+            if (!vis[x] && isCycle(x, adj, vis, s))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+void CycleDFS()
+{
+    int n, m;
+    cin >> n >> m;
+    vector<bool> vis(n, false);
+    vector<vector<int>> adj(n);
+    for (int i = 0; i < m; i++)
+    {
+        int u, v;
+        cin >> u >> v;
+        adj[u].pb(v);
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        if (!vis[i] && isCycle(i, adj, vis, -1))
+        {
+
+            cout << true << endl;
+            return;
+        }
+    }
+    cout << false << endl;
+}
+]]></content>
+  <tabTrigger>isCycleDfs</tabTrigger>
+  <description>Is Cycle is Present in Graph using DFS</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

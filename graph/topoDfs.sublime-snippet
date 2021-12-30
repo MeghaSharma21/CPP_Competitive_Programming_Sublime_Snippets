@@ -1,0 +1,52 @@
+<snippet>
+  <content><![CDATA[
+void Topodfs(int node, vector<vector<int>> adj, vector<bool> &vis, stack<int> &st)
+{
+    vis[node] = true;
+    for (auto x : adj[node])
+    {
+        if (vis[x])
+        {
+            ;
+        }
+        else
+        {
+            Topodfs(x, adj, vis, st);
+        }
+    }
+    st.push(node);
+}
+void TopoDFS()
+{
+    int n, m;
+    cin >> n >> m;
+    vector<bool> vis(n + 1, false);
+    vector<vector<int>> adj(n + 1);
+    for (int i = 0; i < m; i++)
+    {
+        int u, v;
+        cin >> u >> v;
+        adj[u].pb(v);
+    }
+    stack<int> st;
+    for (int i = 0; i < n; i++)
+    {
+        if (!vis[i])
+        {
+
+            Topodfs(i, adj, vis, st);
+        }
+    }
+    while (!st.empty())
+    {
+        int ans = st.top();
+        cout << ans << " ";
+        st.pop();
+    }
+}
+]]></content>
+  <tabTrigger>topoDfs</tabTrigger>
+  <description>Topological DFS in Graph</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>
